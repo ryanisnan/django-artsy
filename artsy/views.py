@@ -15,7 +15,7 @@ def project_index(request):
 def project_detail(request, slug):
 	""" Render the view that displays the details of a single project. """
 	
-	project = get_object_or_404(Project.objects.get(slug=slug))
+	project = get_object_or_404(Project, slug=slug)
 	context = {
 		'project' : project,
 	}
@@ -24,9 +24,10 @@ def project_detail(request, slug):
 def category_index(request, slug):
 	""" Render the view that displays a category and its projects. """
 	
-	category = Category.objects.get(slug=slug)
-	projects = get_list_or_404(Project.objects.filter(category=category))
+	category = get_object_or_404(Category, slug=slug)
+	projects = get_list_or_404(Project, category=category)
 	context = {
+		'category' : category,
 		'projects' : projects,
 	}
 	return render_to_response('category_index.html', context, RequestContext(request))
