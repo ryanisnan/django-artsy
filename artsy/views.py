@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from django.template import RequestContext
 
-from designersportfolio.models import Project, Category
+from models import Project, Category
 
 def project_index(request):
 	""" Render the view that displays the entire list of projects. """

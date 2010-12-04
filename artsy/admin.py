@@ -1,5 +1,5 @@
 from django.contrib import admin
-from designersportfolio.models import Project, ProjectImage, Category
+from artsy.models import Project, ProjectImage, Category
 
 class ProjectImageAdmin(admin.TabularInline):
 	model = ProjectImage

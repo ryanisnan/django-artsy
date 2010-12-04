@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Portfolio{% endblock %}
+
+{% block content %}
+	{% if projects %}
+		{% for project in projects %}
+			<div class="project-preview">
+				<a href="{% url project_detail project.slug %}">
+					<h3>{{ project.title }}</h3>
+					{% if project.preview_image %}
+					<img src="{{ project.preview_image.url }}" alt="Project Thumbnail" />
+					{% endif %}
+					<p class="meta">{{ project.simple_description }}</p>
+				</a>
+			</div>
+		{% endfor %}
+	{% else %}
+		<p>No projects were found!</p>
+	{% endif %}
+{% endblock %}

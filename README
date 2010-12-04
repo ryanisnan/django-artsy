@@ -1,0 +1,12 @@
+django-artsy
+
+Artsy is a django-based portfolio application for graphic designers and artists.
+
+Artsy typically is envisioned to be an integral part of an artist's website, and as such relies on the project to supply templates for artsy's various views.
+
+The three template files artsy expects to exist are:
+1. project_index.html
+2. project_detail.html
+3. category_index.html
+
+These files can reside in one of your project's available template directories. See the directory exampletemplates for samples.

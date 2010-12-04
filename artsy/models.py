@@ -4,10 +4,10 @@ import os.path
 	
 def get_project_image_upload_path(instance, filename):
 	try:
-		path = os.path.join('apps/designersportfolio', instance.slug, filename)
+		path = os.path.join('apps/artsy', instance.slug, filename)
 	except TypeError:
 		try:
-			path = os.path.join('apps/designersportfolio', instance.project.slug, filename)
+			path = os.path.join('apps/artsy', instance.project.slug, filename)
 		except TypeError:
 			pass
 	return path
@@ -41,14 +41,10 @@ class Project(models.Model):
 	
 	def __unicode__(self):
 		return self.title
-	
-	@models.permalink
-	def get_absolute_url(self):
-		from designersportfolio.views import project_detail
-		return (project_detail, [self.slug])
 		
 class ProjectImage(models.Model):
 	project = models.ForeignKey('Project')
+	thumbnail = models.ImageField(upload_to=get_project_image_upload_path, null=True, blank=True)
 	image = models.ImageField(upload_to=get_project_image_upload_path)
 	order = models.SmallIntegerField(default=0, help_text='The ordering in which this image should show up when displayed by other images for this project, in ascending order.')
 	description = models.CharField(max_length=255, null=True, blank=True, help_text='A simple textual description of this image.')
