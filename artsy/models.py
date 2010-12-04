@@ -4,9 +4,7 @@ import os.path
 
 """
 Determine the upload path for this particular project.
-
-An example upload path would be apps/artsy/my-project/image1.jpg
-
+An example upload path would be 'apps/artsy/my-project/image1.jpg'
 The path, when used is added to the project's MEDIA_ROOT setting.
 """
 def get_project_image_upload_path(instance, filename):
