@@ -10,10 +10,10 @@ The path, when used is added to the project's MEDIA_ROOT setting.
 def get_project_image_upload_path(instance, filename):
 	try:
 		path = os.path.join('apps/artsy', instance.slug, filename)
-	except TypeError:
+	except AttributeError:
 		try:
 			path = os.path.join('apps/artsy', instance.project.slug, filename)
-		except TypeError:
+		except AttributeError:
 			pass
 	return path
 		
@@ -65,7 +65,7 @@ class ProjectImage(models.Model):
 	thumbnail = models.ImageField(upload_to=get_project_image_upload_path, null=True, blank=True)
 	image = models.ImageField(upload_to=get_project_image_upload_path)
 	order = models.SmallIntegerField(default=0, help_text='The ordering in which this image should show up when displayed by other images for this project, in ascending order.')
-	description = models.CharField(max_length=255, null=True, blank=True, help_text='A simple textual description of this image.')
+	caption = models.CharField(max_length=128, null=True, blank=True, help_text='A simple textual caption to describe this image.')
 	
 	class Meta:
 		ordering = ('order',)
